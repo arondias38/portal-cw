@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SG청운학원 통합 시스템</title>
+  
+  <!-- 탭 아이콘 (파비콘) -->
+  <link rel="icon" href="https://i.imgur.com/tFbBVcO.png">
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      font-family: 'Pretendard', 'Malgun Gothic', sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #f4f6f9; /* 성적표 앱과 동일한 부드러운 배경색 */
+      color: #333; 
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .portal-container {
+      width: 100%;
+      max-width: 1000px;
+      padding: 60px 25px;
+      margin: 0 auto;
+    }
+
+    .portal-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .portal-logo {
+      height: 32px;
+      margin-bottom: 20px;
+    }
+
+    .portal-title {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      line-height: 1.2;
+      margin: 0;
+      background: linear-gradient(90deg, #1366ce, #e83e8c, #1366ce);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shine 4s linear infinite;
+    }
+
+    .portal-subtitle {
+      font-size: 16px;
+      color: #6c757d;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    /* 그리드 레이아웃 (반응형) */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    /* 앱 카드 스타일 */
+    .app-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px 30px;
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid #e9ecef;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(19, 102, 206, 0.1);
+      border-color: #1366ce;
+    }
+
+    .icon-wrap {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    /* 아이콘 배경색 (앱마다 다르게) */
+    .icon-checklist { background-color: #e8f5e9; color: #28a745; }
+    .icon-report { background-color: #e6f0ff; color: #1366ce; }
+    .icon-coming { background-color: #f8f9fa; color: #adb5bd; }
+
+    .app-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+      color: #111;
+    }
+
+    .app-desc {
+      font-size: 14px;
+      color: #6c757d;
+      line-height: 1.5;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    .enter-btn {
+      margin-top: 25px;
+      padding: 10px 25px;
+      border-radius: 50px;
+      background-color: #f1f3f5;
+      color: #495057;
+      font-size: 13px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .app-card:hover .enter-btn {
+      background-color: #1366ce;
+      color: #ffffff;
+    }
+
+    /* 비활성화된 앱 카드 */
+    .app-card.disabled {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    @keyframes shine { 
+      to { background-position: 200% center; } 
+    }
+
+    @media (max-width: 600px) {
+      .portal-title { font-size: 38px; }
+      .app-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-container">
+    <div class="portal-header">
+      <img class="portal-logo" src="https://i.imgur.com/PQRrCSI.png" alt="SG청운학원">
+      <h1 class="portal-title">Student Management<br>System</h1>
+      <p class="portal-subtitle">SG청운학원 통합 업무 포털에 오신 것을 환영합니다.</p>
+    </div>
+
+    <div class="app-grid">
+      
+      <!-- 1. 체크리스트 앱 -->
+      <a href="https://cw-checklist.vercel.app" class="app-card">
+        <div class="icon-wrap icon-checklist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h2 class="app-title">업무 체크리스트</h2>
+        <p class="app-desc">일일 업무 및 정기 스케줄을<br>확인하고 관리하는 시스템입니다.</p>
+        <div class="enter-btn">시스템 접속</div>
+      </a>
+
+      <!-- 2. LT 성적표 앱 -->
+      <!-- 💡 성적표 Vercel 주소로 변경해주세요! -->
+      <a href="https://[성적표배포주소].vercel.app" class="app-card">
+        <div class="icon-wrap icon-report">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h2 class="app-title">LT 성적표 통합 시스템</h2>
+        <p class="app-desc">학생들의 성적을 입력하고<br>개별 성적표를 출력하는 시스템입니다.</p>
+        <div class="enter-btn">시스템 접속</div>
+      </a>
+
+      <!-- 3. 확장성을 위한 예시 추가 공간 -->
+      <a href="#" class="app-card disabled">
+        <div class="icon-wrap icon-coming">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h2 class="app-title">신규 시스템</h2>
+        <p class="app-desc">새로운 업무 자동화 시스템이<br>추가될 예정입니다.</p>
+        <div class="enter-btn" style="background-color: transparent;">Coming Soon</div>
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>
