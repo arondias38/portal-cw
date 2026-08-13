@@ -18,38 +18,44 @@
       font-family: 'Pretendard', 'Malgun Gothic', sans-serif; 
       margin: 0; 
       padding: 0; 
-      background-color: #e2e8f0; /* 글래스모피즘이 잘 보이도록 살짝 톤 다운된 배경 */
+      background-color: #e2e8f0; 
       color: #333; 
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
-      overflow-x: hidden;
     }
 
-    /* 🟢 배경 원형 동그라미 (오브젝트) */
+    /* 🟢 스크롤 방지용 배경 래퍼 (불필요한 세로 스크롤 완벽 제거) */
+    .bg-shapes-wrap {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    /* 배경 원형 동그라미 (오브젝트) */
     .bg-shape {
       position: absolute;
       border-radius: 50%;
-      filter: blur(70px); /* 오브젝트를 부드럽게 뭉갬 */
-      z-index: -2;
+      filter: blur(70px); 
       animation: float 12s infinite ease-in-out alternate;
     }
     .shape1 {
       width: 450px; height: 450px;
-      background: #ffb6c1; /* 핑크 톤 */
+      background: #ffb6c1; 
       top: -100px; left: -150px;
     }
     .shape2 {
       width: 550px; height: 550px;
-      background: #a1c4fd; /* 블루 톤 */
+      background: #a1c4fd; 
       bottom: -150px; right: -150px;
       animation-delay: -3s;
     }
     .shape3 {
       width: 350px; height: 350px;
-      background: #c2e9fb; /* 라이트 블루/민트 톤 */
+      background: #c2e9fb; 
       top: 40%; left: 50%;
       transform: translate(-50%, -50%);
       animation-delay: -6s;
@@ -61,33 +67,33 @@
       100% { transform: translateY(40px) scale(1.05); }
     }
 
-    /* 🟢 전체 화면을 덮는 살짝 투명한 블러 레이어 (글래스모피즘 효과의 핵심) */
+    /* 전체 화면을 덮는 살짝 투명한 블러 레이어 */
     .glass-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(255, 255, 255, 0.4); /* 반투명 화이트 */
-      backdrop-filter: blur(40px); /* 배경 블러 처리 */
+      background: rgba(255, 255, 255, 0.4); 
+      backdrop-filter: blur(40px); 
       -webkit-backdrop-filter: blur(40px);
       z-index: -1;
     }
 
     .portal-container {
       width: 100%;
-      max-width: 500px;
+      max-width: 600px; /* 💡 요청하신 너비 600px */
       padding: 80px 25px 40px 25px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      flex: 1; /* 로고 하단 배치를 위해 공간 확장 */
+      flex: 1; 
     }
 
     .portal-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
 
     .portal-title {
-      font-size: 52px;
+      font-size: 46px; /* 600px에 맞게 폰트 크기 살짝 조정 */
       font-weight: 900;
       letter-spacing: 1px;
       line-height: 1.2;
@@ -102,27 +108,27 @@
     }
 
     .portal-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: #555;
       margin-top: 15px;
       font-weight: 600;
     }
 
-    /* 그리드 레이아웃 */
+    /* 🟢 그리드 레이아웃 (무조건 좌우 2열 배치) */
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 💡 기존 320px에서 280px 정도로 수정 */
-      gap: 30px;
+      grid-template-columns: repeat(2, 1fr); /* 💡 2열 강제 고정 */
+      gap: 25px;
     }
 
-    /* 🟢 글래스모피즘 적용된 앱 카드 */
+    /* 글래스모피즘 적용된 앱 카드 */
     .app-card {
-      background: rgba(255, 255, 255, 0.6); /* 반투명 배경 */
+      background: rgba(255, 255, 255, 0.6); 
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: 28px;
-      padding: 45px 30px;
+      border-radius: 24px;
+      padding: 35px 20px;
       text-decoration: none;
       color: #333;
       display: flex;
@@ -140,49 +146,48 @@
       border-color: rgba(255, 255, 255, 1);
     }
 
-    /* 글래스모피즘이 가미된 아이콘 박스 */
+    /* 아이콘 박스 */
     .icon-wrap {
-      width: 84px;
-      height: 84px;
-      border-radius: 24px;
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 38px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(10px); /* 내부 블러 */
+      font-size: 32px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px); 
       border: 1px solid rgba(255, 255, 255, 0.6);
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
-    /* 아이콘 반투명 배경색 */
     .icon-checklist { background-color: rgba(40, 167, 69, 0.15); color: #28a745; }
     .icon-report { background-color: rgba(19, 102, 206, 0.15); color: #1366ce; }
 
     .app-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 800;
-      margin: 0 0 12px 0;
+      margin: 0 0 10px 0;
       color: #111;
     }
 
     .app-desc {
-      font-size: 15px;
+      font-size: 13px;
       color: #555;
       line-height: 1.5;
       margin: 0;
       word-break: keep-all;
     }
 
-    /* 🟢 접속 버튼 (글래스모피즘 스타일) */
+    /* 접속 버튼 */
     .enter-btn {
-      margin-top: 30px;
-      padding: 12px 28px;
+      margin-top: 25px;
+      padding: 10px 24px;
       border-radius: 50px;
       background-color: rgba(255, 255, 255, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.8);
       color: #495057;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: bold;
       transition: 0.3s;
       backdrop-filter: blur(5px);
@@ -195,9 +200,9 @@
       box-shadow: 0 4px 12px rgba(19, 102, 206, 0.3);
     }
 
-    /* 🟢 로고 영역을 하단으로 분리 */
+    /* 로고 영역 */
     .portal-footer {
-      margin-top: auto; /* 플렉스 박스의 여유 공간을 모두 밀어내어 최하단 배치 */
+      margin-top: auto; 
       padding-top: 60px;
       text-align: center;
     }
@@ -216,19 +221,22 @@
       to { background-position: 200% center; } 
     }
 
-    @media (max-width: 600px) {
-      .portal-title { font-size: 38px; }
+    /* 💡 아주 작은 스마트폰 사이즈일 때만 상하 1열 배치되도록 보호 */
+    @media (max-width: 500px) {
+      .portal-title { font-size: 36px; }
       .app-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 배경 원형 오브젝트 -->
-  <div class="bg-shape shape1"></div>
-  <div class="bg-shape shape2"></div>
-  <div class="bg-shape shape3"></div>
-  <!-- 글래스모피즘 필터 레이어 -->
+  <!-- 🟢 배경 스크롤 방지 래퍼 추가 -->
+  <div class="bg-shapes-wrap">
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+  </div>
+  
   <div class="glass-overlay"></div>
 
   <div class="portal-container">
@@ -237,21 +245,20 @@
       <p class="portal-subtitle">SG청운학원 통합 업무 포털입니다.</p>
     </div>
 
+    <!-- 🟢 무조건 좌우 2열 배치 -->
     <div class="app-grid">
-      <!-- 1. 체크리스트 앱 (새 창 열림) -->
       <a href="https://cw-checklist.vercel.app" target="_blank" class="app-card">
         <div class="icon-wrap icon-checklist">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
         <h2 class="app-title">체크리스트</h2>
         <p class="app-desc">수업 세부 사항을 작성하고<br>학부모 발송을 관리하는 시스템입니다.</p>
         <div class="enter-btn">시스템 접속</div>
       </a>
 
-      <!-- 2. LT 성적표 앱 (새 창 열림) -->
       <a href="https://cw-reportcard.vercel.app/" target="_blank" class="app-card">
         <div class="icon-wrap icon-report">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
         <h2 class="app-title">레벨테스트</h2>
         <p class="app-desc">학생들의 LT 성적을 입력하고<br>개별 성적표를 출력하는 시스템입니다.</p>
@@ -259,7 +266,6 @@
       </a>
     </div>
 
-    <!-- 하단 학원 로고 -->
     <div class="portal-footer">
       <img class="portal-logo" src="https://i.imgur.com/PQRrCSI.png" alt="SG청운학원">
     </div>
